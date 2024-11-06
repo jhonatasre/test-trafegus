@@ -1,3 +1,33 @@
-<h2>Add New Driver</h2>
-<?= $this->form($form); ?>
-<a href="<?= $this->url('driver'); ?>">Back to Driver List</a>
+<div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h2>Cadastrar Motorista</h2>
+    </div>
+    <div class="card-body">
+        <form method="post" name="driver" class="row g-3" id="driver">
+            <div class="col-md-6">
+                <label for="name" class="form-label">Nome</label>
+                <?= $this->formRow($form->get('name')); ?>
+            </div>
+            <div class="col-md-6">
+                <label for="rg" class="form-label">RG</label>
+                <?= $this->formRow($form->get('rg')); ?>
+            </div>
+            <div class="col-md-6">
+                <label for="cpf" class="form-label">CPF</label>
+                <?= $this->formRow($form->get('cpf')); ?>
+            </div>
+            <div class="col-md-6">
+                <label for="phone" class="form-label">Telefone</label>
+                <?= $this->formRow($form->get('phone')); ?>
+            </div>
+            <div class="col-md-6">
+                <label for="vehicle" class="form-label">Veículo</label>
+                <?= $this->formRow($form->get('vehicle')); ?>
+            </div>
+            <div class="col-12">
+                <button type="submit" name="submit" id="submitbutton" class="btn btn-success mt-3">Gravar</button>
+                <a href="<?= $this->url('driver'); ?>" class="btn btn-outline-danger mt-3">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>

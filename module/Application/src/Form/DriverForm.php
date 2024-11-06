@@ -14,33 +14,48 @@ class DriverForm extends Form
         $this->add([
             'name' => 'name',
             'type' => 'text',
-            'options' => ['label' => 'Name'],
+            'attributes' => [
+                'class' => 'form-control',
+                'required' => 'required',
+            ],
         ]);
 
         $this->add([
             'name' => 'rg',
             'type' => 'text',
-            'options' => ['label' => 'RG'],
+            'attributes' => [
+                'class' => 'form-control',
+                'required' => 'required',
+            ],
         ]);
 
         $this->add([
             'name' => 'cpf',
             'type' => 'text',
-            'options' => ['label' => 'CPF'],
+            'attributes' => [
+                'class' => 'form-control',
+                'required' => 'required',
+            ],
         ]);
 
         $this->add([
             'name' => 'phone',
             'type' => 'text',
-            'options' => ['label' => 'Phone'],
+            'attributes' => [
+                'class' => 'form-control',
+                'required' => false,
+            ],
         ]);
 
         $this->add([
             'name' => 'vehicle',
             'type' => 'select',
             'options' => [
-                'label' => 'Vehicle',
-                'empty_option' => 'Select a vehicle'
+                'empty_option' => 'Selecione um veículo'
+            ],
+            'attributes' => [
+                'class' => 'form-select',
+                'required' => 'required',
             ],
         ]);
 
@@ -65,8 +80,10 @@ class DriverForm extends Form
             'name' => 'name',
             'required' => true,
             'validators' => [
-                ['name' => 'NotEmpty', 'options' => ['messages' => ['isEmpty' => 'Name is required']]],
-                ['name' => 'StringLength', 'options' => ['max' => 200]],
+                ['name' => 'NotEmpty', 'options' => ['messages' => ['isEmpty' => 'O nome é obrigatório']]],
+                ['name' => 'StringLength', 'options' => ['max' => 200, 'messages' => [
+                    \Laminas\Validator\StringLength::TOO_LONG => 'O nome não pode ter mais de 200 caracteres.'
+                ]]],
             ],
         ]);
 
@@ -74,8 +91,10 @@ class DriverForm extends Form
             'name' => 'rg',
             'required' => true,
             'validators' => [
-                ['name' => 'NotEmpty', 'options' => ['messages' => ['isEmpty' => 'RG is required']]],
-                ['name' => 'StringLength', 'options' => ['max' => 20]],
+                ['name' => 'NotEmpty', 'options' => ['messages' => ['isEmpty' => 'O RG é obrigatório']]],
+                ['name' => 'StringLength', 'options' => ['max' => 20, 'messages' => [
+                    \Laminas\Validator\StringLength::TOO_LONG => 'O RG não pode ter mais de 20 caracteres.'
+                ]]],
             ],
         ]);
 
@@ -83,8 +102,10 @@ class DriverForm extends Form
             'name' => 'cpf',
             'required' => true,
             'validators' => [
-                ['name' => 'NotEmpty', 'options' => ['messages' => ['isEmpty' => 'CPF is required']]],
-                ['name' => 'StringLength', 'options' => ['max' => 11]],
+                ['name' => 'NotEmpty', 'options' => ['messages' => ['isEmpty' => 'O CPF é obrigatório']]],
+                ['name' => 'StringLength', 'options' => ['max' => 11, 'messages' => [
+                    \Laminas\Validator\StringLength::TOO_LONG => 'O CPF não pode ter mais de 11 caracteres.'
+                ]]],
             ],
         ]);
 
@@ -92,7 +113,9 @@ class DriverForm extends Form
             'name' => 'phone',
             'required' => false,
             'validators' => [
-                ['name' => 'StringLength', 'options' => ['max' => 20]],
+                ['name' => 'StringLength', 'options' => ['max' => 20, 'messages' => [
+                    \Laminas\Validator\StringLength::TOO_LONG => 'O telefone não pode ter mais de 20 caracteres.'
+                ]]],
             ],
         ]);
 

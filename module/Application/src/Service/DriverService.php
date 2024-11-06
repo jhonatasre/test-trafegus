@@ -27,9 +27,19 @@ class DriverService
      *
      * @return Driver[]
      */
-    public function getAllDrivers()
+    public function getAll()
     {
         return $this->entityManager->getRepository(Driver::class)->findAll();
+    }
+
+    /**
+     * Count drivers.
+     *
+     * @return int
+     */
+    public function count()
+    {
+        return $this->entityManager->getRepository(Driver::class)->count([]);
     }
 
     /**
@@ -38,7 +48,7 @@ class DriverService
      * @param int $id
      * @return Driver|null
      */
-    public function getDriverById(int $id)
+    public function getById(int $id)
     {
         return $this->entityManager->getRepository(Driver::class)->find($id);
     }
@@ -49,7 +59,7 @@ class DriverService
      * @param Driver $driver
      * @return Driver
      */
-    public function addDriver(Driver $driver)
+    public function add(Driver $driver)
     {
         $this->entityManager->persist($driver);
         $this->entityManager->flush();
@@ -62,7 +72,7 @@ class DriverService
      * @param Driver $driver
      * @return Driver
      */
-    public function updateDriver(Driver $driver)
+    public function update(Driver $driver)
     {
         $this->entityManager->merge($driver);
         $this->entityManager->flush();
@@ -75,7 +85,7 @@ class DriverService
      * @param Driver $driver
      * @return void
      */
-    public function deleteDriver(Driver $driver)
+    public function delete(Driver $driver)
     {
         $this->entityManager->remove($driver);
         $this->entityManager->flush();

@@ -1,3 +1,37 @@
-<h2>Edit Vehicle</h2>
-<?= $this->form($form); ?>
-<a href="<?= $this->url('vehicle'); ?>">Back to Vehicle List</a>
+<div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h2>Editar Veículo</h2>
+    </div>
+    <div class="card-body">
+        <form method="post" name="vehicle" class="row g-3" id="vehicle">
+            <div class="col-md-6">
+                <label for="license_plate" class="form-label">Placa</label>
+                <?= $this->formRow($form->get('license_plate')); ?>
+            </div>
+            <div class="col-md-6">
+                <label for="renavam" class="form-label">Renavam</label>
+                <?= $this->formRow($form->get('renavam')); ?>
+            </div>
+            <div class="col-md-6">
+                <label for="model" class="form-label">Modelo</label>
+                <?= $this->formRow($form->get('model')); ?>
+            </div>
+            <div class="col-md-6">
+                <label for="brand" class="form-label">Marca</label>
+                <?= $this->formRow($form->get('brand')); ?>
+            </div>
+            <div class="col-md-6">
+                <label for="year" class="form-label">Ano</label>
+                <?= $this->formRow($form->get('year')); ?>
+            </div>
+            <div class="col-md-6">
+                <label for="color" class="form-label">Cor</label>
+                <?= $this->formRow($form->get('color')); ?>
+            </div>
+            <div class="col-12">
+                <button type="submit" name="submit" id="submitbutton" class="btn btn-success mt-3">Gravar</button>
+                <a href="<?= $this->url('vehicle'); ?>" class="btn btn-outline-danger mt-3">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>

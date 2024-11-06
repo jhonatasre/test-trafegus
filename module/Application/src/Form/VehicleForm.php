@@ -11,49 +11,70 @@ class VehicleForm extends Form
     {
         parent::__construct('vehicle');
 
+        $this->setAttribute('method', 'post');
+        $this->setAttribute('class', 'mt-5');
+
         $this->add([
             'name' => 'license_plate',
             'type' => 'text',
-            'options' => ['label' => 'License Plate'],
+            'attributes' => [
+                'class' => 'form-control',
+                'required' => 'required',
+            ],
         ]);
 
         $this->add([
             'name' => 'renavam',
             'type' => 'text',
-            'options' => ['label' => 'Renavam'],
+            'attributes' => [
+                'class' => 'form-control',
+                'required' => false,
+            ],
         ]);
 
         $this->add([
             'name' => 'model',
             'type' => 'text',
-            'options' => ['label' => 'Model'],
+            'attributes' => [
+                'class' => 'form-control',
+                'required' => 'required',
+            ],
         ]);
 
         $this->add([
             'name' => 'brand',
             'type' => 'text',
-            'options' => ['label' => 'Brand'],
+            'attributes' => [
+                'class' => 'form-control',
+                'required' => 'required',
+            ],
         ]);
 
         $this->add([
             'name' => 'year',
             'type' => 'number',
-            'options' => ['label' => 'Year'],
+            'attributes' => [
+                'class' => 'form-control',
+                'required' => 'required',
+            ],
         ]);
 
         $this->add([
             'name' => 'color',
             'type' => 'text',
-            'options' => ['label' => 'Color'],
+            'attributes' => [
+                'class' => 'form-control',
+                'required' => 'required',
+            ],
         ]);
 
         $this->add([
             'name' => 'submit',
             'type' => 'submit',
             'attributes' => [
-                'value' => 'Submit',
+                'value' => 'Gravar',
                 'id'    => 'submitbutton',
-                'class' => 'btn btn-primary',
+                'class' => 'btn btn-primary mt-3',
             ],
         ]);
 
@@ -68,40 +89,138 @@ class VehicleForm extends Form
             'name' => 'license_plate',
             'required' => true,
             'validators' => [
-                ['name' => 'NotEmpty', 'options' => ['messages' => ['isEmpty' => 'License plate is required']]],
-                ['name' => 'StringLength', 'options' => ['max' => 7]],
+                [
+                    'name' => 'NotEmpty',
+                    'options' => [
+                        'messages' => [
+                            \Laminas\Validator\NotEmpty::IS_EMPTY => 'A placa é obrigatória',
+                        ],
+                    ],
+                ],
+                [
+                    'name' => 'StringLength',
+                    'options' => [
+                        'max' => 7,
+                        'messages' => [
+                            \Laminas\Validator\StringLength::TOO_LONG => 'A placa não pode ter mais que 7 caracteres',
+                        ],
+                    ],
+                ],
             ],
         ]);
 
         $inputFilter->add([
             'name' => 'renavam',
             'required' => false,
-            'filters' => [['name' => 'StringTrim']],
-            'validators' => [['name' => 'StringLength', 'options' => ['max' => 30]]],
+            'filters' => [
+                ['name' => 'StringTrim'],
+            ],
+            'validators' => [
+                [
+                    'name' => 'StringLength',
+                    'options' => [
+                        'max' => 30,
+                        'messages' => [
+                            \Laminas\Validator\StringLength::TOO_LONG => 'O Renavam não pode ter mais que 30 caracteres',
+                        ],
+                    ],
+                ],
+            ],
         ]);
 
         $inputFilter->add([
             'name' => 'model',
             'required' => true,
-            'validators' => [['name' => 'StringLength', 'options' => ['max' => 20]]],
+            'validators' => [
+                [
+                    'name' => 'NotEmpty',
+                    'options' => [
+                        'messages' => [
+                            \Laminas\Validator\NotEmpty::IS_EMPTY => 'O modelo é obrigatório',
+                        ],
+                    ],
+                ],
+                [
+                    'name' => 'StringLength',
+                    'options' => [
+                        'max' => 20,
+                        'messages' => [
+                            \Laminas\Validator\StringLength::TOO_LONG => 'O modelo não pode ter mais que 20 caracteres',
+                        ],
+                    ],
+                ],
+            ],
         ]);
 
         $inputFilter->add([
             'name' => 'brand',
             'required' => true,
-            'validators' => [['name' => 'StringLength', 'options' => ['max' => 20]]],
+            'validators' => [
+                [
+                    'name' => 'NotEmpty',
+                    'options' => [
+                        'messages' => [
+                            \Laminas\Validator\NotEmpty::IS_EMPTY => 'A marca é obrigatória',
+                        ],
+                    ],
+                ],
+                [
+                    'name' => 'StringLength',
+                    'options' => [
+                        'max' => 20,
+                        'messages' => [
+                            \Laminas\Validator\StringLength::TOO_LONG => 'A marca não pode ter mais que 20 caracteres',
+                        ],
+                    ],
+                ],
+            ],
         ]);
 
         $inputFilter->add([
             'name' => 'year',
             'required' => true,
-            'validators' => [['name' => 'Digits']],
+            'validators' => [
+                [
+                    'name' => 'NotEmpty',
+                    'options' => [
+                        'messages' => [
+                            \Laminas\Validator\NotEmpty::IS_EMPTY => 'O ano é obrigatório',
+                        ],
+                    ],
+                ],
+                [
+                    'name' => 'Digits',
+                    'options' => [
+                        'messages' => [
+                            \Laminas\Validator\Digits::NOT_DIGITS => 'O ano deve conter apenas números',
+                        ],
+                    ],
+                ],
+            ],
         ]);
 
         $inputFilter->add([
             'name' => 'color',
             'required' => true,
-            'validators' => [['name' => 'StringLength', 'options' => ['max' => 20]]],
+            'validators' => [
+                [
+                    'name' => 'NotEmpty',
+                    'options' => [
+                        'messages' => [
+                            \Laminas\Validator\NotEmpty::IS_EMPTY => 'A cor é obrigatória',
+                        ],
+                    ],
+                ],
+                [
+                    'name' => 'StringLength',
+                    'options' => [
+                        'max' => 20,
+                        'messages' => [
+                            \Laminas\Validator\StringLength::TOO_LONG => 'A cor não pode ter mais que 20 caracteres',
+                        ],
+                    ],
+                ],
+            ],
         ]);
 
         return $inputFilter;

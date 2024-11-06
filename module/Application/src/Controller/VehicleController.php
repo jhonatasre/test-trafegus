@@ -20,8 +20,11 @@ class VehicleController extends AbstractActionController
 
     public function indexAction()
     {
-        $vehicles = $this->vehicleService->getAllVehicles();
-        return new ViewModel(['vehicles' => $vehicles]);
+        $vehicles = $this->vehicleService->getAll();
+        return new ViewModel([
+            'activeRoute' => 'vehicle',
+            'vehicles' => $vehicles
+        ]);
     }
 
     public function addAction()
@@ -35,13 +38,16 @@ class VehicleController extends AbstractActionController
                 $vehicle = new Vehicle();
                 $vehicle->exchangeArray($form->getData());
 
-                $this->vehicleService->addVehicle($vehicle);
+                $this->vehicleService->add($vehicle);
 
                 return $this->redirect()->toRoute('vehicle');
             }
         }
 
-        return new ViewModel(['form' => $form]);
+        return new ViewModel([
+            'activeRoute' => 'vehicle',
+            'form' => $form
+        ]);
     }
 
     public function editAction()
@@ -52,7 +58,7 @@ class VehicleController extends AbstractActionController
             return $this->redirect()->toRoute('vehicle');
         }
 
-        $vehicle = $this->vehicleService->getVehicleById($id);
+        $vehicle = $this->vehicleService->getById($id);
 
         if (!$vehicle) {
             return $this->redirect()->toRoute('vehicle');
@@ -65,12 +71,16 @@ class VehicleController extends AbstractActionController
             $form->setData($this->getRequest()->getPost());
 
             if ($form->isValid()) {
-                $this->vehicleService->updateVehicle($vehicle);
+                $this->vehicleService->update($vehicle);
                 return $this->redirect()->toRoute('vehicle');
             }
         }
 
-        return new ViewModel(['form' => $form, 'id' => $id]);
+        return new ViewModel([
+            'activeRoute' => 'vehicle',
+            'form' => $form,
+            'id' => $id
+        ]);
     }
 
     public function deleteAction()
@@ -78,10 +88,10 @@ class VehicleController extends AbstractActionController
         $id = (int)$this->params()->fromRoute('id', 0);
 
         if ($id) {
-            $vehicle = $this->vehicleService->getVehicleById($id);
+            $vehicle = $this->vehicleService->getById($id);
 
             if ($vehicle) {
-                $this->vehicleService->deleteVehicle($vehicle);
+                $this->vehicleService->delete($vehicle);
             }
         }
 

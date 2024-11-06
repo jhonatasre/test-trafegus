@@ -1,17 +1,28 @@
-:root {
-    --brand-color: #013755;
+.navbar-nav .nav-link.active,
+.navbar-nav .show>.nav-link,
+.nav-link:focus,
+.nav-link:hover {
+    color: #FFBC00;
+}
+
+.nav-link {
+    color: #6F1A96;
+}
+
+.navbar-toggler {
+    color: #6F1A96;
 }
 
 .navbar {
-    background-color: var(--brand-color);
+    /* background-color: var(--brand-color); */
 }
 
 .btn-primary {
-    background-color: var(--brand-color);
-    border-color: var(--brand-color);
+    /* background-color: var(--brand-color);
+    border-color: var(--brand-color); */
 }
 
 /* allows bootstrap to style Laminas Navigation generated menu items within the navbar */
 .navbar li.active a {
-    color: var(--bs-navbar-active-color);
+    /* color: var(--bs-navbar-active-color); */
 }

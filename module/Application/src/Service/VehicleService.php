@@ -27,9 +27,19 @@ class VehicleService
      *
      * @return Vehicle[]
      */
-    public function getAllVehicles()
+    public function getAll()
     {
         return $this->entityManager->getRepository(Vehicle::class)->findAll();
+    }
+
+    /**
+     * Count vehicles.
+     *
+     * @return int
+     */
+    public function count()
+    {
+        return $this->entityManager->getRepository(Vehicle::class)->count([]);
     }
 
     /**
@@ -38,7 +48,7 @@ class VehicleService
      * @param int $id
      * @return Vehicle|null
      */
-    public function getVehicleById(int $id)
+    public function getById(int $id)
     {
         return $this->entityManager->getRepository(Vehicle::class)->find($id);
     }
@@ -49,7 +59,7 @@ class VehicleService
      * @param Vehicle $vehicle
      * @return Vehicle
      */
-    public function addVehicle(Vehicle $vehicle)
+    public function add(Vehicle $vehicle)
     {
         $this->entityManager->persist($vehicle);
         $this->entityManager->flush();
@@ -63,7 +73,7 @@ class VehicleService
      * @param Vehicle $vehicle
      * @return Vehicle
      */
-    public function updateVehicle(Vehicle $vehicle)
+    public function update(Vehicle $vehicle)
     {
         $this->entityManager->merge($vehicle);
         $this->entityManager->flush();
@@ -76,7 +86,7 @@ class VehicleService
      * @param Vehicle $vehicle
      * @return void
      */
-    public function deleteVehicle(Vehicle $vehicle)
+    public function delete(Vehicle $vehicle)
     {
         $this->entityManager->remove($vehicle);
         $this->entityManager->flush();

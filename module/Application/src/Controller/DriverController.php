@@ -21,16 +21,18 @@ class DriverController extends AbstractActionController
         $this->vehicleService = $vehicleService;
     }
 
-
     public function indexAction()
     {
-        $drivers = $this->driverService->getAllDrivers();
-        return new ViewModel(['drivers' => $drivers]);
+        $drivers = $this->driverService->getAll();
+        return new ViewModel([
+            'activeRoute' => 'driver',
+            'drivers' => $drivers
+        ]);
     }
 
     public function addAction()
     {
-        $vehicles = $this->vehicleService->getAllVehicles();
+        $vehicles = $this->vehicleService->getAll();
 
         $vehiclesArray = [];
         foreach ($vehicles as $vehicle) {
@@ -49,15 +51,18 @@ class DriverController extends AbstractActionController
                 $driver->exchangeArray($form->getData());
 
                 $vehicleId = $form->getData()['vehicle'];
-                $vehicle = $this->vehicleService->getVehicleById($vehicleId);
+                $vehicle = $this->vehicleService->getById($vehicleId);
                 $driver->setVehicle($vehicle);
 
-                $this->driverService->addDriver($driver);
+                $this->driverService->add($driver);
                 return $this->redirect()->toRoute('driver');
             }
         }
 
-        return new ViewModel(['form' => $form]);
+        return new ViewModel([
+            'activeRoute' => 'driver',
+            'form' => $form
+        ]);
     }
 
     public function editAction()
@@ -68,13 +73,13 @@ class DriverController extends AbstractActionController
             return $this->redirect()->toRoute('driver');
         }
 
-        $driver = $this->driverService->getDriverById($id);
+        $driver = $this->driverService->getById($id);
 
         if (!$driver) {
             return $this->redirect()->toRoute('driver');
         }
 
-        $vehicles = $this->vehicleService->getAllVehicles();
+        $vehicles = $this->vehicleService->getAll();
 
         $vehiclesArray = [];
         foreach ($vehicles as $vehicle) {
@@ -92,17 +97,21 @@ class DriverController extends AbstractActionController
 
             if ($form->isValid()) {
                 $vehicleId = $form->get('vehicle')->getValue();
-                $vehicle = $this->vehicleService->getVehicleById($vehicleId);
+                $vehicle = $this->vehicleService->getById($vehicleId);
 
                 $driver->setVehicle($vehicle);
 
-                $this->driverService->updateDriver($driver);
+                $this->driverService->update($driver);
 
                 return $this->redirect()->toRoute('driver');
             }
         }
 
-        return new ViewModel(['form' => $form, 'id' => $id]);
+        return new ViewModel([
+            'activeRoute' => 'driver',
+            'form' => $form,
+            'id' => $id
+        ]);
     }
 
     public function deleteAction()
@@ -110,10 +119,10 @@ class DriverController extends AbstractActionController
         $id = (int)$this->params()->fromRoute('id', 0);
 
         if ($id) {
-            $driver = $this->driverService->getDriverById($id);
+            $driver = $this->driverService->getById($id);
 
             if ($driver) {
-                $this->driverService->deleteDriver($driver);
+                $this->driverService->delete($driver);
             }
         }
 
