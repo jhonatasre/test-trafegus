@@ -38,27 +38,23 @@ Com os contêineres em execução, acesse a aplicação no navegador:
 
 - **Aplicação**: [http://localhost](http://localhost)
 
-### 4. Banco de Dados
+---
 
-O arquivo `banco.sql` será automaticamente executado no contêiner MySQL na primeira inicialização, criando as tabelas `drivers` e `vehicles`. O banco de dados utilizado é o `docker`, com as credenciais padrão definidas no arquivo `docker-compose.yml`.
+## Acessar o PhpMyAdmin
 
-- **Usuário**: `docker`
-- **Senha**: `docker`
-- **Banco de dados**: `docker`
+Este projeto também inclui um contêiner do PhpMyAdmin, que permite gerenciar o banco de dados MySQL via interface gráfica.
 
-Você pode acessar o banco diretamente pelo contêiner ou conectar-se ao MySQL localmente usando as credenciais fornecidas.
+Para acessar o PhpMyAdmin, siga as etapas:
 
-```bash
-docker exec -it <nome_do_container> mysql -u docker -p
-```
+1. **Iniciar o PhpMyAdmin**: O PhpMyAdmin já está configurado no Docker Compose e será iniciado automaticamente junto com o banco de dados e a aplicação. Ele estará acessível na seguinte URL:
 
-### 5. Dependências
+   - **PhpMyAdmin**: [http://localhost:8080](http://localhost:8080)
 
-Se você precisar instalar ou atualizar as dependências PHP do projeto, pode usar o Composer. Execute o comando abaixo dentro do contêiner da aplicação:
-
-```bash
-docker exec -it <nome_do_container_da_aplicacao> composer install
-```
+2. **Credenciais de acesso**:
+   - **Host do banco de dados**: `database`
+   - **Usuário**: `root`
+   - **Senha**: `root`
+   - **Banco de dados**: `docker`
 
 ---
 
@@ -94,20 +90,3 @@ O projeto utiliza o framework Laminas para gerenciar as rotas e os controladores
   - `create`: Cria um novo veículo.
   - `update`: Atualiza as informações de um veículo existente.
   - `delete`: Deleta um veículo.
-
----
-
-## Configuração do Doctrine ORM
-
-O projeto está configurado para usar o Doctrine ORM para gerenciar o banco de dados. As entidades do Doctrine estão localizadas no diretório `src/Entity`.
-
-- **Configuração do banco de dados**: O banco de dados MySQL está configurado com o nome `docker`, e as credenciais são definidas em `docker-compose.yml`:
-
-  ```php
-  'dbname' => 'docker',
-  'user' => 'root',
-  'password' => 'root',
-  'host' => 'database',
-  'driver' => 'pdo_mysql',
-  ```
-
