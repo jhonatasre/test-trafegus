@@ -22,12 +22,12 @@
                     <td><?= $vehicle->getBrand(); ?></td>
                     <td><?= $vehicle->getYear(); ?></td>
                     <td><?= $vehicle->getColor(); ?></td>
-                    <td>
-                        <a href="<?= $this->url('vehicle', ['action' => 'edit', 'id' => $vehicle->getId()]); ?>">
-                            Editar
-                        </a> |
-                        <a onclick="return confirm('Deseja realmente excluir esse veículo?')" href="<?= $this->url('vehicle', ['action' => 'delete', 'id' => $vehicle->getId()]); ?>">
-                            Excluir
+                    <td class="text-center">
+                        <a class="btn btn-outline-warning" href="<?= $this->url('vehicle', ['action' => 'edit', 'id' => $vehicle->getId()]); ?>">
+                            <i class="fas fa-pencil-alt"></i> Editar
+                        </a>
+                        <a class="btn btn-outline-danger" onclick="return confirm('Deseja realmente excluir esse motorista?')" href="<?= $this->url('vehicle', ['action' => 'delete', 'id' => $vehicle->getId()]); ?>">
+                            <i class="fas fa-trash"></i> Excluir
                         </a>
                     </td>
                 </tr>

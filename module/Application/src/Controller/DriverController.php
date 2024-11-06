@@ -36,7 +36,7 @@ class DriverController extends AbstractActionController
 
         $vehiclesArray = [];
         foreach ($vehicles as $vehicle) {
-            $vehiclesArray[$vehicle->getId()] = $vehicle->getLicensePlate();
+            $vehiclesArray[$vehicle->getId()] = $vehicle->getLicensePlate() . ' | ' . $vehicle->getBrand() . ' | ' . $vehicle->getModel();
         }
 
         $form = new DriverForm();
@@ -83,7 +83,7 @@ class DriverController extends AbstractActionController
 
         $vehiclesArray = [];
         foreach ($vehicles as $vehicle) {
-            $vehiclesArray[$vehicle->getId()] = $vehicle->getLicensePlate();
+            $vehiclesArray[$vehicle->getId()] = $vehicle->getLicensePlate() . ' | ' . $vehicle->getBrand() . ' | ' . $vehicle->getModel();
         }
 
         $form = new DriverForm();

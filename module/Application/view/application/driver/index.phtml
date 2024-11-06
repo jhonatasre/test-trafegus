@@ -19,13 +19,17 @@
                     <td><?= $driver->getRg(); ?></td>
                     <td><?= $driver->getCpf(); ?></td>
                     <td><?= $driver->getPhone(); ?></td>
-                    <td><?= $driver->getVehicle() ? $driver->getVehicle()->getLicensePlate() : 'N/A'; ?></td>
                     <td>
-                        <a href="<?= $this->url('driver', ['action' => 'edit', 'id' => $driver->getId()]); ?>">
-                            Editar
-                        </a> |
-                        <a onclick="return confirm('Deseja realmente excluir esse motorista?')" href="<?= $this->url('driver', ['action' => 'delete', 'id' => $driver->getId()]); ?>">
-                            Excluir
+                        <a href="<?= $this->url('vehicle', ['action' => 'edit', 'id' => $driver->getVehicle()->getId()]); ?>">
+                            <?= $driver->getVehicle()->getLicensePlate() ?>
+                        </a>
+                    </td>
+                    <td class="text-center">
+                        <a class="btn btn-outline-warning" href="<?= $this->url('driver', ['action' => 'edit', 'id' => $driver->getId()]); ?>">
+                            <i class="fas fa-pencil-alt"></i> Editar
+                        </a>
+                        <a class="btn btn-outline-danger" onclick="return confirm('Deseja realmente excluir esse motorista?')" href="<?= $this->url('driver', ['action' => 'delete', 'id' => $driver->getId()]); ?>">
+                            <i class="fas fa-trash"></i> Excluir
                         </a>
                     </td>
                 </tr>

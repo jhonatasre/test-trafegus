@@ -4,6 +4,7 @@ namespace Application\Form;
 
 use Laminas\Form\Form;
 use Laminas\InputFilter\InputFilter;
+use Symfony\Component\Console\Helper\Helper;
 
 class DriverForm extends Form
 {
@@ -17,6 +18,7 @@ class DriverForm extends Form
             'attributes' => [
                 'class' => 'form-control',
                 'required' => 'required',
+                'maxlength' => 200
             ],
         ]);
 
@@ -24,8 +26,9 @@ class DriverForm extends Form
             'name' => 'rg',
             'type' => 'text',
             'attributes' => [
-                'class' => 'form-control',
+                'class' => 'form-control input-integer',
                 'required' => 'required',
+                'maxlength' => 20
             ],
         ]);
 
@@ -33,8 +36,9 @@ class DriverForm extends Form
             'name' => 'cpf',
             'type' => 'text',
             'attributes' => [
-                'class' => 'form-control',
+                'class' => 'form-control input-cpf',
                 'required' => 'required',
+                'maxlength' => 14
             ],
         ]);
 
@@ -42,8 +46,9 @@ class DriverForm extends Form
             'name' => 'phone',
             'type' => 'text',
             'attributes' => [
-                'class' => 'form-control',
+                'class' => 'form-control input-phone',
                 'required' => false,
+                'maxlength' => 20
             ],
         ]);
 
@@ -54,7 +59,7 @@ class DriverForm extends Form
                 'empty_option' => 'Selecione um veículo'
             ],
             'attributes' => [
-                'class' => 'form-select',
+                'class' => 'form-select select2',
                 'required' => 'required',
             ],
         ]);
@@ -103,9 +108,17 @@ class DriverForm extends Form
             'required' => true,
             'validators' => [
                 ['name' => 'NotEmpty', 'options' => ['messages' => ['isEmpty' => 'O CPF é obrigatório']]],
-                ['name' => 'StringLength', 'options' => ['max' => 11, 'messages' => [
-                    \Laminas\Validator\StringLength::TOO_LONG => 'O CPF não pode ter mais de 11 caracteres.'
+                ['name' => 'StringLength', 'options' => ['max' => 14, 'messages' => [
+                    \Laminas\Validator\StringLength::TOO_LONG => 'O CPF não pode ter mais de 14 caracteres.'
                 ]]],
+                ['name' => 'Callback', 'options' => [
+                    'callback' => function ($value) {
+                        return \Application\Helper\Validator::cpf($value);
+                    },
+                    'messages' => [
+                        'callbackValue' => 'O CPF fornecido não é válido.',
+                    ],
+                ]],
             ],
         ]);
 

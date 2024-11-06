@@ -18,8 +18,9 @@ class VehicleForm extends Form
             'name' => 'license_plate',
             'type' => 'text',
             'attributes' => [
-                'class' => 'form-control',
+                'class' => 'form-control input-license-plate',
                 'required' => 'required',
+                'maxlength' => 8
             ],
         ]);
 
@@ -27,8 +28,9 @@ class VehicleForm extends Form
             'name' => 'renavam',
             'type' => 'text',
             'attributes' => [
-                'class' => 'form-control',
+                'class' => 'form-control input-renavam',
                 'required' => false,
+                'maxlength' => 30
             ],
         ]);
 
@@ -38,6 +40,7 @@ class VehicleForm extends Form
             'attributes' => [
                 'class' => 'form-control',
                 'required' => 'required',
+                'maxlength' => 20
             ],
         ]);
 
@@ -47,15 +50,17 @@ class VehicleForm extends Form
             'attributes' => [
                 'class' => 'form-control',
                 'required' => 'required',
+                'maxlength' => 20
             ],
         ]);
 
         $this->add([
             'name' => 'year',
-            'type' => 'number',
+            'type' => 'text',
             'attributes' => [
-                'class' => 'form-control',
+                'class' => 'form-control input-year',
                 'required' => 'required',
+                'maxlength' => 4
             ],
         ]);
 
@@ -65,6 +70,7 @@ class VehicleForm extends Form
             'attributes' => [
                 'class' => 'form-control',
                 'required' => 'required',
+                'maxlength' => 20
             ],
         ]);
 
@@ -100,9 +106,9 @@ class VehicleForm extends Form
                 [
                     'name' => 'StringLength',
                     'options' => [
-                        'max' => 7,
+                        'max' => 8,
                         'messages' => [
-                            \Laminas\Validator\StringLength::TOO_LONG => 'A placa não pode ter mais que 7 caracteres',
+                            \Laminas\Validator\StringLength::TOO_LONG => 'A placa não pode ter mais que 8 caracteres',
                         ],
                     ],
                 ],

@@ -25,7 +25,9 @@
         ->prependStylesheet($this->basePath('css/style.css'))
         ->prependStylesheet($this->basePath('css/bootstrap.min.css'))
         ->prependStylesheet($this->basePath('css/fontawesome.min.css'))
-        ->prependStylesheet($this->basePath('css/fontawesome-all.min.css')) ?>
+        ->prependStylesheet($this->basePath('css/fontawesome-all.min.css'))
+        ->prependStylesheet($this->basePath('css/select2.min.css'))
+        ->appendStylesheet($this->basePath('css/select2-bootstrap-5-theme.min.css')) ?>
 
     <!-- Scripts -->
     <?= $this->headScript() ?>
@@ -85,7 +87,11 @@
         </footer>
     </div>
     <?= $this->inlineScript()
-        ->prependFile($this->basePath('js/bootstrap.min.js')) ?>
+        ->prependFile($this->basePath('js/jquery.min.js'))
+        ->prependFile($this->basePath('js/bootstrap.min.js'))
+        ->appendFile($this->basePath('js/jquery.mask.min.js'))
+        ->appendFile($this->basePath('js/main.js'))
+        ->appendFile($this->basePath('js/select2.min.js')) ?>
 </body>
 
 </html>
