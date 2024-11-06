@@ -30,13 +30,13 @@ Este projeto usa Docker para contêinerizar a aplicação e o banco de dados. Pa
 docker-compose up --build
 ```
 
-Isso irá construir e iniciar os contêineres necessários para o MySQL e a aplicação PHP. A aplicação será acessível na URL `http://localhost:80` e o banco de dados estará disponível no contêiner MySQL.
+Isso irá construir e iniciar os contêineres necessários para o MySQL e a aplicação PHP. A aplicação será acessível na URL `http://localhost` e o banco de dados estará disponível no contêiner MySQL.
 
 ### 3. Acessar a aplicação
 
-Com os contêineres em execução, acesse a aplicação no navegador ou via API:
+Com os contêineres em execução, acesse a aplicação no navegador:
 
-- **Aplicação**: [http://localhost:80](http://localhost:80)
+- **Aplicação**: [http://localhost](http://localhost)
 
 ### 4. Banco de Dados
 
@@ -94,13 +94,6 @@ O projeto utiliza o framework Laminas para gerenciar as rotas e os controladores
   - `create`: Cria um novo veículo.
   - `update`: Atualiza as informações de um veículo existente.
   - `delete`: Deleta um veículo.
-
-### Exemplos de chamadas de API:
-
-- **Listar Motoristas**: `GET /driver`
-- **Criar Motorista**: `POST /driver/create`
-- **Listar Veículos**: `GET /vehicle`
-- **Criar Veículo**: `POST /vehicle/create`
 
 ---
 
