@@ -1,14 +1,16 @@
+version: "3.8"
+
 services:
     application:
         build: .
         ports:
-            - 80:80
+            - "80:80"
         volumes:
             - .:/var/www
         depends_on:
             - database
-        links:
-                - database
+        networks:
+            - trafegus-test
 
     database:
         image: mysql:5.7
@@ -22,19 +24,17 @@ services:
 
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
-        links:
-            - database
         environment:
             PMA_HOST: database
             UPLOAD_LIMIT: 512M
             MEMORY_LIMIT: 512M
         ports:
-            - 8080:80
+            - "8080:80"
         depends_on:
             - database
         networks:
             - trafegus-test
 
 networks:
-  trafegus-test:
-    driver: bridge
+    trafegus-test:
+        driver: bridge

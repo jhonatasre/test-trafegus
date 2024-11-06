@@ -1,0 +1,25 @@
+<h2>Drivers List</h2>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>RG</th>
+        <th>CPF</th>
+        <th>Phone</th>
+        <th>Vehicle</th>
+        <th>Actions</th>
+    </tr>
+    <?php foreach ($drivers as $driver): ?>
+    <tr>
+        <td><?= $driver->getName(); ?></td>
+        <td><?= $driver->getRg(); ?></td>
+        <td><?= $driver->getCpf(); ?></td>
+        <td><?= $driver->getPhone(); ?></td>
+        <td><?= $driver->getVehicle() ? $driver->getVehicle()->getLicensePlate() : 'N/A'; ?></td>
+        <td>
+            <a href="<?= $this->url('driver', ['action' => 'edit', 'id' => $driver->getId()]); ?>">Edit</a> |
+            <a href="<?= $this->url('driver', ['action' => 'delete', 'id' => $driver->getId()]); ?>">Delete</a>
+        </td>
+    </tr>
+    <?php endforeach; ?>
+</table>
+<a href="<?= $this->url('driver', ['action' => 'add']); ?>">Add New Driver</a>

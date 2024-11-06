@@ -1,0 +1,27 @@
+<h2>Vehicles List</h2>
+<table>
+    <tr>
+        <th>License Plate</th>
+        <th>Renavam</th>
+        <th>Model</th>
+        <th>Brand</th>
+        <th>Year</th>
+        <th>Color</th>
+        <th>Actions</th>
+    </tr>
+    <?php foreach ($vehicles as $vehicle): ?>
+    <tr>
+        <td><?= $vehicle->getLicensePlate(); ?></td>
+        <td><?= $vehicle->getRenavam(); ?></td>
+        <td><?= $vehicle->getModel(); ?></td>
+        <td><?= $vehicle->getBrand(); ?></td>
+        <td><?= $vehicle->getYear(); ?></td>
+        <td><?= $vehicle->getColor(); ?></td>
+        <td>
+            <a href="<?= $this->url('vehicle', ['action' => 'edit', 'id' => $vehicle->getId()]); ?>">Edit</a> |
+            <a href="<?= $this->url('vehicle', ['action' => 'delete', 'id' => $vehicle->getId()]); ?>">Delete</a>
+        </td>
+    </tr>
+    <?php endforeach; ?>
+</table>
+<a href="<?= $this->url('vehicle', ['action' => 'add']); ?>">Add New Vehicle</a>
