@@ -31,7 +31,7 @@ services:
         networks:
             - trafegus-test
         healthcheck:
-            test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "docker", "-p$MYSQL_PASSWORD"]
+            test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot"]
             interval: 10s
             retries: 5
             start_period: 10s
@@ -43,6 +43,8 @@ services:
             PMA_HOST: database
             UPLOAD_LIMIT: 512M
             MEMORY_LIMIT: 512M
+            PMA_USER: root
+            PMA_PASSWORD: root
         ports:
             - "8080:80"
         depends_on:

@@ -1,6 +1,6 @@
 # Projeto de Gerenciamento de Motoristas e Veículos
 
-Este é um projeto para gerenciar motoristas e veículos usando PHP, MySQL e Doctrine ORM.
+Este é um projeto para gerenciar motoristas e veículos usando PHP, MySQL, **Doctrine ORM** e **Doctrine Migrations**.
 
 ## Requisitos
 
@@ -8,8 +8,6 @@ Antes de iniciar o projeto, certifique-se de ter o seguinte instalado:
 
 - **Docker** (para rodar o banco de dados MySQL e o ambiente da aplicação)
 - **Docker Compose** (para orquestrar os contêineres)
-- **PHP** (se necessário para desenvolvimento)
-- **Composer** (para gerenciar dependências do PHP)
 
 ## Iniciando o Projeto
 
@@ -32,7 +30,17 @@ docker-compose up --build
 
 Isso irá construir e iniciar os contêineres necessários para o MySQL e a aplicação PHP. A aplicação será acessível na URL `http://localhost` e o banco de dados estará disponível no contêiner MySQL.
 
-### 3. Acessar a aplicação
+### 3. Executar as migrações do banco de dados
+
+Após iniciar o projeto e garantir que o banco de dados esteja rodando, execute as migrações usando o **Doctrine Migrations** para garantir que a estrutura do banco de dados esteja atualizada. O comando a seguir será executado automaticamente ao iniciar o contêiner da aplicação (por meio do `docker-compose`), mas você também pode rodá-lo manualmente caso precise:
+
+```bash
+docker-compose exec application /bin/bash -c "php vendor/bin/doctrine-migrations migrate --no-interaction"
+```
+
+Este comando aplicará as migrações pendentes no banco de dados para garantir que as tabelas e dados estejam corretos.
+
+### 4. Acessar a aplicação
 
 Com os contêineres em execução, acesse a aplicação no navegador:
 
