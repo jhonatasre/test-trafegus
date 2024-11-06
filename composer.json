@@ -16,13 +16,15 @@
         "doctrine/doctrine-migrations-bundle": "^3.3",
         "doctrine/doctrine-module": "^6.1",
         "doctrine/doctrine-orm-module": "^6.1",
+        "doctrine/migrations": "^3.8",
         "doctrine/orm": "^2.20",
         "laminas/laminas-component-installer": "^3.4.0",
         "laminas/laminas-development-mode": "^3.12.0",
         "laminas/laminas-i18n": "^2.29",
         "laminas/laminas-mvc": "^3.7.0",
         "laminas/laminas-skeleton-installer": "^1.3.0",
-        "laminas/laminas-validator": "^2.64"
+        "laminas/laminas-validator": "^2.64",
+        "symfony/yaml": "^7.1"
     },
     "require-dev": {
         "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
@@ -43,6 +45,10 @@
         }
     },
     "scripts": {
+        "migrations:generate": "vendor/bin/doctrine-migrations generate",
+        "migrations:diff": "vendor/bin/doctrine-migrations diff",
+        "migrations:migrate": "vendor/bin/doctrine-migrations migrate",
+        "migrations:execute": "vendor/bin/doctrine-migrations execute",
         "clear-config-cache": "php bin/clear-config-cache.php",
         "cs-check": "vendor/bin/phpcs",
         "cs-fix": "vendor/bin/phpcbf",

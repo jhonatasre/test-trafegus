@@ -11,7 +11,13 @@ services:
             - database
         networks:
             - trafegus-test
-        command: /bin/bash -c "composer install --no-scripts --prefer-dist && apache2-foreground"
+        command: >
+            /bin/bash -c "
+            dockerize -wait tcp://database:3306 -timeout 60s &&
+            composer install --no-scripts --prefer-dist &&
+            php vendor/bin/doctrine-migrations migrate --no-interaction &&
+            apache2-foreground
+            "
 
     database:
         image: mysql:5.7
@@ -22,9 +28,14 @@ services:
             MYSQL_PASSWORD: docker
         volumes:
             - mysql_data:/var/lib/mysql
-            - ./banco.sql:/docker-entrypoint-initdb.d/banco.sql
         networks:
             - trafegus-test
+        healthcheck:
+            test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "docker", "-p$MYSQL_PASSWORD"]
+            interval: 10s
+            retries: 5
+            start_period: 10s
+            timeout: 5s
 
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
