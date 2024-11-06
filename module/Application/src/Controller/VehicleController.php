@@ -27,7 +27,7 @@ class VehicleController extends AbstractActionController
         ]);
     }
 
-    public function addAction()
+    public function createAction()
     {
         $form = new VehicleForm();
 
@@ -50,7 +50,7 @@ class VehicleController extends AbstractActionController
         ]);
     }
 
-    public function editAction()
+    public function updateAction()
     {
         $id = (int)$this->params()->fromRoute('id', 0);
 

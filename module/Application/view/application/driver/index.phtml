@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-header d-flex justify-content-between align-items-center">
         <h2 class="m-0">Listagem de Motoristas</h2>
-        <a href="<?= $this->url('driver', ['action' => 'add']); ?>" class="btn btn-primary">Adicionar Motorista</a>
+        <a href="<?= $this->url('driver', ['action' => 'create']); ?>" class="btn btn-primary">Adicionar Motorista</a>
     </div>
     <div class="card-body">
         <table class="table table-striped table-bordered">
@@ -20,12 +20,12 @@
                     <td><?= $driver->getCpf(); ?></td>
                     <td><?= $driver->getPhone(); ?></td>
                     <td>
-                        <a href="<?= $this->url('vehicle', ['action' => 'edit', 'id' => $driver->getVehicle()->getId()]); ?>">
+                        <a href="<?= $this->url('vehicle', ['action' => 'update', 'id' => $driver->getVehicle()->getId()]); ?>">
                             <?= $driver->getVehicle()->getLicensePlate() ?>
                         </a>
                     </td>
                     <td class="text-center">
-                        <a class="btn btn-outline-warning" href="<?= $this->url('driver', ['action' => 'edit', 'id' => $driver->getId()]); ?>">
+                        <a class="btn btn-outline-warning" href="<?= $this->url('driver', ['action' => 'update', 'id' => $driver->getId()]); ?>">
                             <i class="fas fa-pencil-alt"></i> Editar
                         </a>
                         <a class="btn btn-outline-danger" onclick="return confirm('Deseja realmente excluir esse motorista?')" href="<?= $this->url('driver', ['action' => 'delete', 'id' => $driver->getId()]); ?>">

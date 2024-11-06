@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-header d-flex justify-content-between align-items-center">
         <h2 class="m-0">Listagem de Veículos</h2>
-        <a href="<?= $this->url('vehicle', ['action' => 'add']); ?>" class="btn btn-primary">Adicionar Veículo</a>
+        <a href="<?= $this->url('vehicle', ['action' => 'create']); ?>" class="btn btn-primary">Adicionar Veículo</a>
     </div>
     <div class="card-body">
         <table class="table table-striped table-bordered">
@@ -23,7 +23,7 @@
                     <td><?= $vehicle->getYear(); ?></td>
                     <td><?= $vehicle->getColor(); ?></td>
                     <td class="text-center">
-                        <a class="btn btn-outline-warning" href="<?= $this->url('vehicle', ['action' => 'edit', 'id' => $vehicle->getId()]); ?>">
+                        <a class="btn btn-outline-warning" href="<?= $this->url('vehicle', ['action' => 'update', 'id' => $vehicle->getId()]); ?>">
                             <i class="fas fa-pencil-alt"></i> Editar
                         </a>
                         <a class="btn btn-outline-danger" onclick="return confirm('Deseja realmente excluir esse motorista?')" href="<?= $this->url('vehicle', ['action' => 'delete', 'id' => $vehicle->getId()]); ?>">

@@ -70,38 +70,9 @@ return [
     ],
     'service_manager' => [
         'factories' => [
-            // \Doctrine\ORM\EntityManager::class => \DoctrineORMModule\Service\EntityManagerFactory::class,
-
-            \Doctrine\ORM\Configuration::class => function ($container) {
-                $config = new \Doctrine\ORM\Configuration();
-
-                $annotationDriver = new \Doctrine\ORM\Mapping\Driver\AnnotationDriver(new \Doctrine\Common\Annotations\AnnotationReader(), [__DIR__ . '/src/Entity']);
-                $config->setMetadataDriverImpl($annotationDriver);
-
-                $config->setProxyDir(__DIR__ . '/../../../data/doctrine-proxies');
-                $config->setProxyNamespace('Doctrine\ORM\Proxy');
-
-                return $config;
-            },
-
-            \Doctrine\ORM\EntityManager::class => function ($container) {
-                $config = $container->get(\Doctrine\ORM\Configuration::class);
-                $connection = $container->get(\Doctrine\DBAL\Connection::class);
-                return \Doctrine\ORM\EntityManager::create($connection, $config);
-            },
-
-            \Doctrine\DBAL\Connection::class => function ($container) {
-                $params = [
-                    'dbname' => 'docker',
-                    'user' => 'root',
-                    'password' => 'root',
-                    'host' => 'database',
-                    'driver' => 'pdo_mysql',
-                ];
-
-                return \Doctrine\DBAL\DriverManager::getConnection($params);
-            },
-
+            \Doctrine\ORM\Configuration::class => Factory\DoctrineConfigurationFactory::class,
+            \Doctrine\ORM\EntityManager::class => Factory\DoctrineEntityFactory::class,
+            \Doctrine\DBAL\Connection::class => Factory\DoctrineConnectionFactory::class,
             Service\VehicleService::class => Factory\VehicleServiceFactory::class,
             Service\DriverService::class => Factory\DriverServiceFactory::class,
         ],
@@ -121,31 +92,5 @@ return [
         'template_path_stack' => [
             __DIR__ . '/../view',
         ],
-    ],
-
-    'doctrine' => [
-        // 'connection' => [
-        //     'orm_default' => [
-        //         'driverClass' => \Doctrine\DBAL\Driver\PDO\MySql\Driver::class,
-        //         'params' => [
-        //             'host' => 'database',
-        //             'user' => 'root',
-        //             'password' => 'root',
-        //             'dbname' => 'docker',
-        //         ],
-        //     ],
-        // ],
-        // 'driver' => [
-        //     'application_entities' => [
-        //         'class' => \Doctrine\ORM\Mapping\Driver\AnnotationDriver::class,
-        //         'cache' => 'array',
-        //         'paths' => [__DIR__ . '/../src/Entity'],
-        //     ],
-        //     'orm_default' => [
-        //         'drivers' => [
-        //             'Application\Entity' => 'application_entities'
-        //         ],
-        //     ],
-        // ],
-    ],
+    ]
 ];

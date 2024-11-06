@@ -30,7 +30,7 @@ class DriverController extends AbstractActionController
         ]);
     }
 
-    public function addAction()
+    public function createAction()
     {
         $vehicles = $this->vehicleService->getAll();
 
@@ -65,7 +65,7 @@ class DriverController extends AbstractActionController
         ]);
     }
 
-    public function editAction()
+    public function updateAction()
     {
         $id = (int)$this->params()->fromRoute('id', 0);
 

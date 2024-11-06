@@ -11,6 +11,7 @@ services:
             - database
         networks:
             - trafegus-test
+        command: /bin/bash -c "composer install --no-scripts --prefer-dist && apache2-foreground"
 
     database:
         image: mysql:5.7
@@ -19,6 +20,9 @@ services:
             MYSQL_DATABASE: docker
             MYSQL_USER: docker
             MYSQL_PASSWORD: docker
+        volumes:
+            - mysql_data:/var/lib/mysql
+            - ./banco.sql:/docker-entrypoint-initdb.d/banco.sql
         networks:
             - trafegus-test
 
@@ -34,6 +38,10 @@ services:
             - database
         networks:
             - trafegus-test
+
+volumes:
+    mysql_data:
+        driver: local
 
 networks:
     trafegus-test:
