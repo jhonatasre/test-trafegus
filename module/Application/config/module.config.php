@@ -78,7 +78,7 @@ return [
                 $annotationDriver = new \Doctrine\ORM\Mapping\Driver\AnnotationDriver(new \Doctrine\Common\Annotations\AnnotationReader(), [__DIR__ . '/src/Entity']);
                 $config->setMetadataDriverImpl($annotationDriver);
 
-                $config->setProxyDir(__DIR__ . '/../data/doctrine-proxies');
+                $config->setProxyDir(__DIR__ . '/../../../data/doctrine-proxies');
                 $config->setProxyNamespace('Doctrine\ORM\Proxy');
 
                 return $config;
